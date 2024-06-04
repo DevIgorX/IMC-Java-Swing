@@ -7,6 +7,7 @@ public class IMCCalculator extends JFrame {
     private JTextField pesoField;
     private JTextField alturaField;
     private JLabel resultadoLabel;
+    private JLabel faixaLabel;
 
     public IMCCalculator() {
         // Configurações da janela
@@ -43,6 +44,10 @@ public class IMCCalculator extends JFrame {
         resultadoLabel.setBounds(10, 100, 250, 25);
         add(resultadoLabel);
 
+        faixaLabel = new JLabel("");
+        faixaLabel.setBounds(10, 130, 300, 25);
+        add(faixaLabel);
+
         // Ação do botão
         calcularButton.addActionListener(new ActionListener() {
             @Override
@@ -58,7 +63,22 @@ public class IMCCalculator extends JFrame {
             double altura = Double.parseDouble(alturaField.getText());
             double imc = peso / (altura * altura);
             resultadoLabel.setText(String.format("Resultado: %.2f", imc));
-        } catch (NumberFormatException e) {
+
+            // Verifica a faixa de IMC e define a mensagem correspondente
+            if (imc < 18.5) {
+                faixaLabel.setText("Abaixo do peso");
+            } else if (imc >= 18.5 && imc < 25.0) {
+                faixaLabel.setText("Peso normal");
+            } else if (imc >= 25.0 && imc < 30.0) {
+                faixaLabel.setText("Sobrepeso");
+            } else if (imc >= 30.0 && imc < 35.0) {
+                faixaLabel.setText("Obesidade grau I");
+            } else if (imc >= 35.0 && imc < 40.0) {
+                faixaLabel.setText("Obesidade grau II");
+            } else {
+                faixaLabel.setText("Obesidade grau III");
+            }
+        } catch (NumberFormatException ex) {
             resultadoLabel.setText("Entrada inválida. Por favor, insira números válidos.");
         }
     }
@@ -72,4 +92,3 @@ public class IMCCalculator extends JFrame {
         });
     }
 }
-

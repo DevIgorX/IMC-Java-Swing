@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Cursor;
 
 public class IMCCalculator extends JFrame {
 
@@ -38,6 +39,8 @@ public class IMCCalculator extends JFrame {
 
         JButton calcularButton = new JButton("Calcular IMC");
         calcularButton.setBounds(10, 70, 250, 25);
+        // Altera o cursor do mouse para a mãozinha de clique quando passa sobre o botão
+        calcularButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         add(calcularButton);
 
         resultadoLabel = new JLabel("Resultado: ");
@@ -92,3 +95,4 @@ public class IMCCalculator extends JFrame {
         });
     }
 }
+
